@@ -2,24 +2,18 @@
 
 const
     express = require('express'),
-    http = require('http');
+    http = require('http'),
+    fib = require('./fib');
+
 let app = express();
-let fibNumber = 0;
-
-let incrementFib = n => {
-
-    fibNumber += n;
-
-    return fibNumber;
-}
 
 app.get('/:number', (req, res) => {
 
     setTimeout(() => {
-        incrementFib(Number.parseInt(req.params.number));
-        console.log(`New Fibonacci number -> ${fibNumber}`);
+        let newFib = fib.incrementFib(Number.parseInt(req.params.number));
+        console.log(`New Fibonacci number -> ${newFib}`);
 
-        http.get(`http://python_server/${fibNumber}`);
+        http.get(`http://python_server/${newFib}`);
 
         res.status(200);
         res.send();
@@ -27,3 +21,5 @@ app.get('/:number', (req, res) => {
 })
 
 app.listen(80, '0.0.0.0', () => { console.log('Listening...'); });
+
+module.exports = { incrementFib };
