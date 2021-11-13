@@ -12,13 +12,20 @@ log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
 
-@app.route('/<int:n>', methods=['GET'])
-def main_route(n):
+def increment_fib(n):
 
     global fib_number
 
-    time.sleep(.5)
     fib_number += n
+
+    return fib_number
+
+
+@app.route('/<int:n>', methods=['GET'])
+def main_route(n):
+
+    time.sleep(.5)
+    increment_fib(n)
     print(f'New fibonacci number -> {fib_number}', flush=True)
 
     requests.get(f'http://nodejs_server/{fib_number}')

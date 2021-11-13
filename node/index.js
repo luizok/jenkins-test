@@ -6,11 +6,17 @@ const
 let app = express();
 let fibNumber = 0;
 
+let incrementFib = n => {
+
+    fibNumber += n;
+
+    return fibNumber;
+}
 
 app.get('/:number', (req, res) => {
 
     setTimeout(() => {
-        fibNumber += Number.parseInt(req.params.number);
+        incrementFib(Number.parseInt(req.params.number));
         console.log(`New Fibonacci number -> ${fibNumber}`);
 
         http.get(`http://python_server/${fibNumber}`);
