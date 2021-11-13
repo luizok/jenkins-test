@@ -4,21 +4,14 @@ import requests
 from multiprocessing import Process
 import logging
 
+from fib import increment_fib
+
 
 app = Flask(__name__)
 fib_number = 0
 
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
-
-
-def increment_fib(n):
-
-    global fib_number
-
-    fib_number += n
-
-    return fib_number
 
 
 @app.route('/<int:n>', methods=['GET'])
