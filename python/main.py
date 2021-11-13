@@ -1,7 +1,7 @@
 from flask import Flask
 import time
 import requests
-import threading
+from multiprocessing import Process
 import logging
 
 
@@ -35,12 +35,12 @@ def main():
 
 if __name__ == '__main__':
 
-    server = threading.Thread(target=app.run, kwargs={
+    server = Process(target=app.run, kwargs={
         'host': '0.0.0.0',
         'port': 80,
         'debug': False
     })
-    main = threading.Thread(target=main)
+    main = Process(target=main)
 
-    main.run()
-    server.run()
+    main.start()
+    server.start()
