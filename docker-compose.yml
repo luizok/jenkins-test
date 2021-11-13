@@ -1,0 +1,12 @@
+version: '2.2'
+
+services:
+  python_server:
+    build: ./python/.
+    ports:
+      - '80'
+  nodejs_server:
+    build: ./node/.
+    ports:
+      - '80'
+      - '8082:80'

@@ -1,0 +1,9 @@
+{
+    "name": "test-project",
+    "version": "1.0.0",
+    "description": "A Node.js project",
+    "main": "./index.js",
+    "dependencies": {
+        "express": "^5.0.0-alpha.8"
+    }
+}
